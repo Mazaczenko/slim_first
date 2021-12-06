@@ -7,9 +7,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $config['displayErrorDetails'] = true;
 $config['db']['host']   = "localhost";
-$config['db']['user']   = "user";
-$config['db']['pass']   = "password";
-$config['db']['dbname'] = "exampleapp";
+$config['db']['user']   = "root";
+$config['db']['pass']   = "";
+$config['db']['dbname'] = "slim_app";
 
 
 $app = new \Slim\App(["settings" => $config]);
@@ -33,6 +33,7 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
+// Routes
 $app->get('/tickets', function (Request $request, Response $response) {
     $this->logger->addInfo("Ticket list");
     $mapper = new TicketMapper($this->db);
